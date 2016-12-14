@@ -60,9 +60,13 @@
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _main = __webpack_require__(179);
+	var _Main = __webpack_require__(179);
 
-	var _main2 = _interopRequireDefault(_main);
+	var _Main2 = _interopRequireDefault(_Main);
+
+	var _Sidebar = __webpack_require__(183);
+
+	var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -86,11 +90,28 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'container-fluid' },
 	        _react2.default.createElement(
-	          'h1',
-	          { className: (0, _classnames2.default)('text-center', _main2.default.indigo) },
-	          'This is one cool app!'
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: (0, _classnames2.default)('col-sm-5 col-lg-3') },
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(_Sidebar2.default, null)
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: (0, _classnames2.default)('col-sm-7 col-lg-8', _Main2.default.todo) },
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'TODO HERE'
+	            )
+	          )
 	        )
 	      );
 	    }
@@ -21579,8 +21600,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules=true&localIdentName=[name]__[local]___[hash:base64:5]!./main.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?modules=true&localIdentName=[name]__[local]___[hash:base64:5]!./main.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules=true&localIdentName=[name]__[local]___[hash:base64:5]!./Main.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?modules=true&localIdentName=[name]__[local]___[hash:base64:5]!./Main.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -21598,11 +21619,11 @@
 
 
 	// module
-	exports.push([module.id, ".main__indigo___1-BHc {\n  color: indigo;\n}\n", ""]);
+	exports.push([module.id, "* {\n  box-sizing: border-box;\n}\n\n.Main__todo___3Ejot {\n  height: 100vh;\n  overflow-y: scroll;\n}\n", ""]);
 
 	// exports
 	exports.locals = {
-		"indigo": "main__indigo___1-BHc"
+		"todo": "Main__todo___3Ejot"
 	};
 
 /***/ },
@@ -21912,6 +21933,530 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _classnames = __webpack_require__(178);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _Sidebar = __webpack_require__(184);
+
+	var _Sidebar2 = _interopRequireDefault(_Sidebar);
+
+	var _reactFontawesome = __webpack_require__(186);
+
+	var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Sidebar = function (_React$Component) {
+	  _inherits(Sidebar, _React$Component);
+
+	  function Sidebar(props) {
+	    _classCallCheck(this, Sidebar);
+
+	    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
+
+	    _this.state = {
+	      minutes: 25,
+	      seconds: 0,
+	      secondsToDisplay: '00', // handles single digits
+	      intervalId: null,
+	      intervalIsRunning: false,
+	      timerIsPaused: false,
+	      timerTitle: 'pomodoro'
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Sidebar, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {}
+	  }, {
+	    key: 'startTimer',
+	    value: function startTimer(minutes) {
+	      var self = this;
+	      clearInterval(this.state.intervalId);
+	      this.setState({
+	        minutes: minutes,
+	        seconds: 0,
+	        secondsToDisplay: '00',
+	        intervalIsRunning: false,
+	        timerIsPaused: false
+	      });
+	      console.log('set timer with length of: ', minutes);
+	      this.tickSeconds();
+	      if (minutes === 5) {
+	        this.setState({ timerTitle: 'short break' });
+	      } else if (minutes === 10) {
+	        this.setState({ timerTitle: 'long break' });
+	      } else {
+	        this.setState({ timerTitle: 'pomodoro' });
+	      }
+	    }
+	  }, {
+	    key: 'tickMinutes',
+	    value: function tickMinutes() {
+	      this.countdownMinutes();
+	    }
+	  }, {
+	    key: 'tickSeconds',
+	    value: function tickSeconds() {
+	      var self = this;
+	      this.setState({
+	        intervalId: setInterval(this.countdownSeconds.bind(self), 1000),
+	        intervalIsRunning: true
+	      });
+	    }
+	  }, {
+	    key: 'countdownMinutes',
+	    value: function countdownMinutes() {
+	      console.log('MINUTE:', this.state.minutes);
+	      var minute = this.state.minutes;
+	      if (minute > 0) {
+	        this.setState({ minutes: minute - 1 });
+	      }
+	    }
+	  }, {
+	    key: 'countdownSeconds',
+	    value: function countdownSeconds() {
+	      if (!this.state.timerIsPaused) {
+	        var self = this;
+	        var second = this.state.seconds;
+	        if (second > 0) {
+	          this.setState({ seconds: second - 1 });
+	        } else if (second === 0) {
+	          this.setState({
+	            seconds: 59,
+	            secondsToDisplay: 59
+	          });
+	          this.countdownMinutes();
+	        }
+	        console.log(this.state.seconds);
+	        // Format seconds (prepend 0 if single digit)
+	        if (this.state.seconds.toString().length === 2) {
+	          this.setState({ secondsToDisplay: this.state.seconds });
+	        } else if (this.state.seconds.toString().length === 1) {
+	          this.setState({ secondsToDisplay: '0' + this.state.seconds.toString() });
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'handleStartClick',
+	    value: function handleStartClick() {
+	      var self = this;
+	      if (!this.state.intervalIsRunning) {
+	        this.setState({ intervalId: setInterval(this.countdownSeconds.bind(self), 1000) });
+	      }
+	      this.setState({
+	        timerIsPaused: false,
+	        intervalIsRunning: true
+	      });
+	    }
+	  }, {
+	    key: 'handlePauseClick',
+	    value: function handlePauseClick() {
+	      if (this.state.intervalIsRunning) {
+	        this.setState({ timerIsPaused: true });
+	      }
+	    }
+	  }, {
+	    key: 'handleResetClick',
+	    value: function handleResetClick() {
+	      clearInterval(this.state.intervalId);
+	      if (this.state.timerTitle === 'short break') {
+	        this.setState({
+	          minutes: 5,
+	          seconds: 0,
+	          secondsToDisplay: '00',
+	          intervalIsRunning: false,
+	          timerIsPaused: false
+	        });
+	      } else if (this.state.timerTitle === 'long break') {
+	        this.setState({
+	          minutes: 10,
+	          seconds: 0,
+	          secondsToDisplay: '00',
+	          intervalIsRunning: false,
+	          timerIsPaused: false
+	        });
+	      } else {
+	        this.setState({
+	          minutes: 25,
+	          seconds: 0,
+	          secondsToDisplay: '00',
+	          intervalIsRunning: false,
+	          timerIsPaused: false
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'div',
+	          { className: (0, _classnames2.default)('row', _Sidebar2.default.sidebar, 'animated fadeInLeft') },
+	          _react2.default.createElement(
+	            'div',
+	            { className: _Sidebar2.default.appTitle },
+	            _react2.default.createElement(
+	              'h2',
+	              { className: (0, _classnames2.default)(_Sidebar2.default.prompt, _Sidebar2.default.pushRight) },
+	              'focus'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              { className: (0, _classnames2.default)(_Sidebar2.default.promptLight, _Sidebar2.default.pushRight) },
+	              'your personal productivity space'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: (0, _classnames2.default)(_Sidebar2.default.pomodoro, 'animated fadeIn') },
+	            _react2.default.createElement(
+	              'h4',
+	              { className: (0, _classnames2.default)(_Sidebar2.default.prompt, _Sidebar2.default.cardTitle, 'pull-left animated fadeIn') },
+	              this.state.timerTitle
+	            ),
+	            _react2.default.createElement(
+	              'h4',
+	              { className: (0, _classnames2.default)(_Sidebar2.default.questionMark, 'pull-right') },
+	              _react2.default.createElement(
+	                'a',
+	                { target: '_blank', href: 'https://www.focusboosterapp.com/the-pomodoro-technique' },
+	                _react2.default.createElement(_reactFontawesome2.default, { name: 'question-circle', size: 'lg' })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'h1',
+	              { className: (0, _classnames2.default)(_Sidebar2.default.prompt, _Sidebar2.default.pushDown1, _Sidebar2.default.time, 'text-center') },
+	              _react2.default.createElement(
+	                'span',
+	                { id: 'timer' },
+	                this.state.minutes,
+	                ':',
+	                this.state.secondsToDisplay
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: (0, _classnames2.default)(_Sidebar2.default.pushDown2) },
+	              _react2.default.createElement(
+	                'div',
+	                { className: (0, _classnames2.default)(_Sidebar2.default.btnWidth), onClick: this.handleStartClick.bind(this) },
+	                _react2.default.createElement(
+	                  'h5',
+	                  { className: (0, _classnames2.default)('text-center', _Sidebar2.default.btnText, _Sidebar2.default.prompt) },
+	                  'START'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: (0, _classnames2.default)(_Sidebar2.default.btnWidth), onClick: this.handlePauseClick.bind(this) },
+	                _react2.default.createElement(
+	                  'h5',
+	                  { className: (0, _classnames2.default)('text-center', _Sidebar2.default.btnText, _Sidebar2.default.prompt) },
+	                  'STOP'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: (0, _classnames2.default)(_Sidebar2.default.btnWidth), onClick: this.handleResetClick.bind(this) },
+	                _react2.default.createElement(
+	                  'h5',
+	                  { className: (0, _classnames2.default)('text-center', _Sidebar2.default.btnText, _Sidebar2.default.prompt) },
+	                  'RESET'
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'div',
+	                { onClick: this.startTimer.bind(this, 25), className: (0, _classnames2.default)(_Sidebar2.default.btnColor1) },
+	                _react2.default.createElement(
+	                  'h5',
+	                  { className: (0, _classnames2.default)('text-center', _Sidebar2.default.whiteButtonText, _Sidebar2.default.prompt) },
+	                  'POMODORO'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { onClick: this.startTimer.bind(this, 5), className: (0, _classnames2.default)(_Sidebar2.default.btnColor2) },
+	                _react2.default.createElement(
+	                  'h5',
+	                  { className: (0, _classnames2.default)('text-center', _Sidebar2.default.whiteButtonText, _Sidebar2.default.prompt) },
+	                  'SHORT\xA0BREAK'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { onClick: this.startTimer.bind(this, 10), className: (0, _classnames2.default)(_Sidebar2.default.btnColor3) },
+	                _react2.default.createElement(
+	                  'h5',
+	                  { className: (0, _classnames2.default)('text-center', _Sidebar2.default.whiteButtonText, _Sidebar2.default.prompt) },
+	                  'LONG\xA0BREAK'
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: (0, _classnames2.default)(_Sidebar2.default.links, 'text-center') },
+	          _react2.default.createElement(
+	            'a',
+	            { className: _Sidebar2.default.madeWithLove, target: '_blank', href: 'http://jeremyukim.com' },
+	            _react2.default.createElement(
+	              'p',
+	              { style: { fontSize: '0.9em' } },
+	              'made with ',
+	              _react2.default.createElement(_reactFontawesome2.default, { name: 'heart' }),
+	              ' and react.js'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Sidebar;
+	}(_react2.default.Component);
+
+	exports.default = Sidebar;
+
+/***/ },
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(185);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(182)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules=true&localIdentName=[name]__[local]___[hash:base64:5]!./Sidebar.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?modules=true&localIdentName=[name]__[local]___[hash:base64:5]!./Sidebar.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(181)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "* {\n  box-sizing: border-box;\n}\n\na {\n\ttext-decoration: none;\n  color: inherit;\n}\n\na:hover {\n  color: #777;\n}\n\n.Sidebar__sidebar___HfGZp {\n  height: 100vh;\n  background-color: #333;\n  box-shadow: 0 0 10px #555;\n}\n\n.Sidebar__prompt___1tSHs {\n\tfont-family: \"Prompt\";\n\tfont-weight: 400;\n}\n\n.Sidebar__promptLight___1LSOK {\n\tfont-family: \"Prompt\";\n\tfont-weight: 300;\n}\n\n.Sidebar__header___2CP57 {\n\ttext-align: center;\n}\n\n.Sidebar__appTitle___2sfTc {\n  background-color: #333;\n  color: #fafafa;\n  padding-top: 5px;\n  padding-bottom: 10px;\n}\n\n.Sidebar__cardTitle___32MU9 {\n  margin-left: 20px;\n  display: inline-block;\n}\n\n.Sidebar__pomodoro___2LMh4 {\n  /*margin-left: 1px;*/\n  /*margin-right: 1px;*/\n\tbackground-color: #f3f3f3;\n\tpadding-top: 5px;\n  -webkit-animation-delay: 0.4s;\n  -moz-animation-delay: 0.4s;\n  -webkit-animation-duration: 1.5s;\n  -moz-animation-duration: 1.5s;\n}\n\n.Sidebar__pushRight___3F6Mg {\n\tmargin-left: 20px;\n}\n\n.Sidebar__pushDown1___1K6Wk {\n\tmargin-top: 55px;\n\tmargin-bottom: 5px;\n}\n\n.Sidebar__pushDown2___2n0VA {\n  height: 60px;\n\tmargin-top: 10px;\n\tpadding-bottom: 20px;\n}\n\n.Sidebar__time___3HNgB {\n\tfont-size: 4em;\n  font-family: 'Droid Sans Mono', monospace;\n}\n\n.Sidebar__btnText___ceP-X {\n  font-weight: 400;\n  font-size: 0.9em;\n  padding: 10px;\n  letter-spacing: 0.4px;\n\tcursor: pointer;\n}\n\n.Sidebar__btnText___ceP-X:hover {\n  color: #4ab2dd;\n}\n\n.Sidebar__whiteButtonText___1mYRg {\n  color: #fafafa;\n  font-size: 0.85em;\n  font-weight: 400;\n}\n\n.Sidebar__btnWidth___3qgcY {\n  width: calc(100% / 3);\n  display: inline-block;\n}\n\n.Sidebar__btnColor1___3BhRo {\n\tbackground-color: #4ab2dd;\n\tcursor: pointer;\n  width: calc(100% / 3);\n  display: inline-block;\n  padding-top: 3px;\n  padding-bottom: 3px;\n}\n\n.Sidebar__btnColor1___3BhRo:hover {\n\tbackground-color: #5bc3ee;\n}\n\n.Sidebar__btnColor2___30YoA {\n\tbackground-color: #e8516c;\n\tcursor: pointer;\n  width: calc(100% / 3);\n  display: inline-block;\n  padding-top: 3px;\n  padding-bottom: 3px;\n}\n\n.Sidebar__btnColor2___30YoA:hover {\n\tbackground-color: #f9627b;\n}\n\n.Sidebar__btnColor3___i2-ta {\n\tbackground-color: #9e9ecb;\n\tcursor: pointer;\n  width: calc(100% / 3);\n  display: inline-block;\n  padding-top: 3px;\n  padding-bottom: 3px;\n}\n\n.Sidebar__btnColor3___i2-ta:hover {\n\tbackground-color: #afafdc;\n}\n\n.Sidebar__links___39NO8 {\n  width: 100%;\n\tposition: absolute;\n\tbottom: 10px;\n  left: 0;\n  font-family: 'Prompt';\n  font-weight: 300;\n}\n\n.Sidebar__questionMark___1qy8B {\n  margin-right: 15px;\n}\n\n.Sidebar__whatIsPomodoro___2yahU, .Sidebar__madeWithLove___2vzw3 {\n  color: #eee;\n}\n\n.Sidebar__whatIsPomodoro___2yahU:hover, .Sidebar__madeWithLove___2vzw3:hover, .Sidebar__whatIsPomodoro___2yahU:visited, .Sidebar__madeWithLove___2vzw3:visited, .Sidebar__whatIsPomodoro___2yahU:link, .Sidebar__madeWithLove___2vzw3:link {\n\ttext-decoration: none;\n  color: #eee;\n}\n", ""]);
+
+	// exports
+	exports.locals = {
+		"sidebar": "Sidebar__sidebar___HfGZp",
+		"prompt": "Sidebar__prompt___1tSHs",
+		"promptLight": "Sidebar__promptLight___1LSOK",
+		"header": "Sidebar__header___2CP57",
+		"appTitle": "Sidebar__appTitle___2sfTc",
+		"cardTitle": "Sidebar__cardTitle___32MU9",
+		"pomodoro": "Sidebar__pomodoro___2LMh4",
+		"pushRight": "Sidebar__pushRight___3F6Mg",
+		"pushDown1": "Sidebar__pushDown1___1K6Wk",
+		"pushDown2": "Sidebar__pushDown2___2n0VA",
+		"time": "Sidebar__time___3HNgB",
+		"btnText": "Sidebar__btnText___ceP-X",
+		"whiteButtonText": "Sidebar__whiteButtonText___1mYRg",
+		"btnWidth": "Sidebar__btnWidth___3qgcY",
+		"btnColor1": "Sidebar__btnColor1___3BhRo",
+		"btnColor2": "Sidebar__btnColor2___30YoA",
+		"btnColor3": "Sidebar__btnColor3___i2-ta",
+		"links": "Sidebar__links___39NO8",
+		"questionMark": "Sidebar__questionMark___1qy8B",
+		"whatIsPomodoro": "Sidebar__whatIsPomodoro___2yahU",
+		"madeWithLove": "Sidebar__madeWithLove___2vzw3"
+	};
+
+/***/ },
+/* 186 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _screenReaderStyles = __webpack_require__(187);
+
+	var _screenReaderStyles2 = _interopRequireDefault(_screenReaderStyles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	/**
+	 * A React component for the font-awesome icon library.
+	 *
+	 *
+	 * @param {String} [ariaLabel] An extra accessibility label to put on the icon
+	 * @param {Boolean} [border=false] Whether or not to show a border radius
+	 * @param {String} [className] An extra set of CSS classes to add to the component
+	 * @param {Object} [cssModule] Option to pass FontAwesome CSS as a module
+	 * @param {Boolean} [fixedWidth=false] Make buttons fixed width
+	 * @param {String} [flip=false] Flip the icon's orientation.
+	 * @param {Boolean} [inverse=false]Inverse the icon's color
+	 * @param {String} name Name of the icon to use
+	 * @param {Boolean} [pulse=false] Rotate icon with 8 steps (rather than smoothly)
+	 * @param {Number} [rotate] The degress to rotate the icon by
+	 * @param {String} [size] The icon scaling size
+	 * @param {Boolean} [spin=false] Spin the icon
+	 * @param {String} [stack] Stack an icon on top of another
+	 * @param {String} [tag=span] The HTML tag to use as a string (eg 'i' or 'em')
+	 * @module FontAwesome
+	 * @type {ReactClass}
+	 */
+	exports.default = _react2.default.createClass({
+
+	  displayName: 'FontAwesome',
+
+	  propTypes: {
+	    ariaLabel: _react2.default.PropTypes.string,
+	    border: _react2.default.PropTypes.bool,
+	    className: _react2.default.PropTypes.string,
+	    cssModule: _react2.default.PropTypes.object,
+	    fixedWidth: _react2.default.PropTypes.bool,
+	    flip: _react2.default.PropTypes.oneOf(['horizontal', 'vertical']),
+	    inverse: _react2.default.PropTypes.bool,
+	    name: _react2.default.PropTypes.string.isRequired,
+	    pulse: _react2.default.PropTypes.bool,
+	    rotate: _react2.default.PropTypes.oneOf([90, 180, 270]),
+	    size: _react2.default.PropTypes.oneOf(['lg', '2x', '3x', '4x', '5x']),
+	    spin: _react2.default.PropTypes.bool,
+	    stack: _react2.default.PropTypes.oneOf(['1x', '2x']),
+	    tag: _react2.default.PropTypes.string
+	  },
+
+	  render: function render() {
+	    var _props = this.props;
+	    var border = _props.border;
+	    var cssModule = _props.cssModule;
+	    var className = _props.className;
+	    var fixedWidth = _props.fixedWidth;
+	    var flip = _props.flip;
+	    var inverse = _props.inverse;
+	    var name = _props.name;
+	    var pulse = _props.pulse;
+	    var rotate = _props.rotate;
+	    var size = _props.size;
+	    var spin = _props.spin;
+	    var stack = _props.stack;
+	    var _props$tag = _props.tag;
+	    var tag = _props$tag === undefined ? 'span' : _props$tag;
+	    var ariaLabel = _props.ariaLabel;
+
+	    var props = _objectWithoutProperties(_props, ['border', 'cssModule', 'className', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack', 'tag', 'ariaLabel']);
+
+	    var classNames = [];
+
+	    if (cssModule) {
+	      classNames.push(cssModule['fa']);
+	      classNames.push(cssModule['fa-' + name]);
+	      size && classNames.push(cssModule['fa-' + size]);
+	      spin && classNames.push(cssModule['fa-spin']);
+	      pulse && classNames.push(cssModule['fa-pulse']);
+	      border && classNames.push(cssModule['fa-border']);
+	      fixedWidth && classNames.push(cssModule['fa-fw']);
+	      inverse && classNames.push(cssModule['fa-inverse']);
+	      flip && classNames.push(cssModule['fa-flip-' + flip]);
+	      rotate && classNames.push(cssModule['fa-rotate-' + rotate]);
+	      stack && classNames.push(cssModule['fa-stack-' + stack]);
+	    } else {
+	      classNames.push('fa');
+	      classNames.push('fa-' + name);
+	      size && classNames.push('fa-' + size);
+	      spin && classNames.push('fa-spin');
+	      pulse && classNames.push('fa-pulse');
+	      border && classNames.push('fa-border');
+	      fixedWidth && classNames.push('fa-fw');
+	      inverse && classNames.push('fa-inverse');
+	      flip && classNames.push('fa-flip-' + flip);
+	      rotate && classNames.push('fa-rotate-' + rotate);
+	      stack && classNames.push('fa-stack-' + stack);
+	    }
+
+	    // Add any custom class names at the end.
+	    className && classNames.push(className);
+	    return _react2.default.createElement(tag, _extends({}, props, { 'aria-hidden': true, className: classNames.join(' ') }), ariaLabel ? _react2.default.createElement('span', { style: _screenReaderStyles2.default }, ariaLabel) : null);
+	  }
+	});
+	module.exports = exports['default'];
+
+/***/ },
+/* 187 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  position: 'absolute',
+	  width: '1px',
+	  height: '1px',
+	  padding: '0px',
+	  margin: '-1px',
+	  overflow: 'hidden',
+	  clip: 'rect(0px, 0px, 0px, 0px)',
+	  border: '0px'
+	};
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);
