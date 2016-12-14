@@ -14,8 +14,8 @@ class Main extends React.Component {
               <Sidebar/>
             </div>
           </div>
-          <div className={cx('col-sm-7 col-lg-8')}>
-            TODO HERE
+          <div className={cx('col-sm-7 col-lg-8', styles.todo)}>
+            <p>TODO HERE</p>
           </div>
         </div>
       </div>
