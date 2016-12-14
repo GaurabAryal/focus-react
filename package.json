@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "React todo app",
   "main": "webpack.config.js",
-  "homepage": "https://jeremyukim.github.io/focus-react-todo/",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d build"
   },
   "author": "jeremyukim",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "babel-preset-react": "^6.16.0",
     "css-loader": "^0.26.1",
     "file-loader": "^0.9.0",
+    "gh-pages": "^0.12.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "style-loader": "^0.13.1",
