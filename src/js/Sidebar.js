@@ -112,6 +112,41 @@ class Sidebar extends React.Component {
     }
   }
 
+  handleResetClick() {
+    clearInterval(this.state.intervalId);
+    if (this.state.timerTitle === 'short break') {
+      this.setState(
+        {
+          minutes: 5,
+          seconds: 0,
+          secondsToDisplay: '00',
+          intervalIsRunning: false,
+          timerIsPaused: false
+        }
+      );
+    } else if (this.state.timerTitle === 'long break') {
+      this.setState(
+        {
+          minutes: 10,
+          seconds: 0,
+          secondsToDisplay: '00',
+          intervalIsRunning: false,
+          timerIsPaused: false
+        }
+      );
+    } else {
+      this.setState(
+        {
+          minutes: 25,
+          seconds: 0,
+          secondsToDisplay: '00',
+          intervalIsRunning: false,
+          timerIsPaused: false
+        }
+      );
+    }
+  }
+
   render() {
     return (
       <div>
@@ -142,13 +177,12 @@ class Sidebar extends React.Component {
                   START
                 </h5>
 							</div>
-							<div className={cx(styles.btnWidth)}>
-								<h5 className={cx('text-center', styles.btnText, styles.prompt)}
-                  onClick={this.handlePauseClick.bind(this)}>
+							<div className={cx(styles.btnWidth)} onClick={this.handlePauseClick.bind(this)}>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
                   STOP
                 </h5>
 							</div>
-							<div className={cx(styles.btnWidth)}>
+							<div className={cx(styles.btnWidth)} onClick={this.handleResetClick.bind(this)}>
 								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
                   RESET
                 </h5>
