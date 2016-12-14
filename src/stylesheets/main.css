@@ -1,31 +1,3 @@
 * {
   box-sizing: border-box;
 }
-
-.indigo {
-  color: indigo;
-}
-
-.backgroundLeft {
-	height: 100%;
-	background-color: #e5e5e5;
-	z-index: 1;
-	margin-right:5px; /* Set to 0 if you don't want shadow at the right side */
-	margin-left: 0; /* Set to 20px if you want shadow at the left side */
-	margin-top: 0; /* Set to 20px if you want shadow at the top side */
-	margin-bottom: 0; /* Set to 20px if you want shadow at the bottom side */
-	box-shadow: 0 0 10px #676767;
-}
-
-@media (max-width: 767px) {
-  .backgroundLeft {
-  	height: 100%;
-  	background-color: #e5e5e5;
-  	z-index: 1;
-  	margin-right: 0; /* Set to 0 if you don't want shadow at the right side */
-  	margin-left: 0; /* Set to 20px if you want shadow at the left side */
-  	margin-top: 0; /* Set to 20px if you want shadow at the top side */
-  	margin-bottom: 0; /* Set to 20px if you want shadow at the bottom side */
-  	box-shadow: 0 0 10px #676767;
-  }
-}

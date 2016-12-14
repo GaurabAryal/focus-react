@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
 import styles from '../stylesheets/Sidebar.css';
+import FontAwesome from 'react-fontawesome';
 
 class Sidebar extends React.Component {
 
@@ -114,46 +115,69 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div>
-        <div className={cx('row', styles.sidebar)}>
+        <div className={cx('row', styles.sidebar, 'animated fadeInLeft')}>
           <div className={styles.appTitle}>
             <h2 className={cx(styles.prompt, styles.pushRight)}>focus</h2>
-            <p className={cx(styles.prompt, styles.pushRight)}>your personal productivity space</p>
+            <p className={cx(styles.promptLight, styles.pushRight)}>
+              your personal productivity space
+            </p>
           </div>
-					<div className={styles.pomodoro}>
-            <h4 className={cx(styles.prompt, styles.cardTitle, 'pull-left')}>{this.state.timerTitle}</h4>
+					<div className={cx(styles.pomodoro, 'animated fadeIn')}>
+            <h4 className={cx(styles.prompt, styles.cardTitle, 'pull-left animated fadeIn')}>
+              {this.state.timerTitle}
+            </h4>
+            <h4 className={cx(styles.questionMark, 'pull-right')}>
+              <a target='_blank' href='https://www.focusboosterapp.com/the-pomodoro-technique'>
+                <FontAwesome name='question-circle' size='lg'/>
+              </a>
+            </h4>
 						<h1 className={cx(styles.prompt, styles.pushDown1, styles.time, 'text-center')}>
-              <span id='timer'>{this.state.minutes}:{this.state.secondsToDisplay}</span>
+              <span id='timer'>
+                {this.state.minutes}:{this.state.secondsToDisplay}
+              </span>
             </h1>
 						<div className={cx(styles.pushDown2)}>
 							<div className={cx(styles.btnWidth)} onClick={this.handleStartClick.bind(this)}>
-								<h5 className={cx('text-center', styles.btnText)}>START</h5>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
+                  START
+                </h5>
 							</div>
 							<div className={cx(styles.btnWidth)}>
-								<h5 className={cx('text-center', styles.btnText)} onClick={this.handlePauseClick.bind(this)}>STOP</h5>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt)}
+                  onClick={this.handlePauseClick.bind(this)}>
+                  STOP
+                </h5>
 							</div>
 							<div className={cx(styles.btnWidth)}>
-								<h5 className={cx('text-center', styles.btnText)}>RESET</h5>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
+                  RESET
+                </h5>
 							</div>
 						</div>
 						<div>
 							<div onClick={this.startTimer.bind(this, 25)} className={cx(styles.btnColor1)}>
-								<h5 className={cx('text-center', styles.whiteButtonText)}>POMODORO</h5>
+								<h5 className={cx('text-center', styles.whiteButtonText, styles.prompt)}>
+                  POMODORO
+                </h5>
 							</div>
 							<div onClick={this.startTimer.bind(this, 5)} className={cx(styles.btnColor2)}>
-								<h5 className={cx('text-center', styles.whiteButtonText)}>SHORT&nbsp;BREAK</h5>
+								<h5 className={cx('text-center', styles.whiteButtonText, styles.prompt)}>
+                  SHORT&nbsp;BREAK
+                </h5>
 							</div>
 							<div onClick={this.startTimer.bind(this, 10)} className={cx(styles.btnColor3)}>
-								<h5 className={cx('text-center', styles.whiteButtonText)}>LONG&nbsp;BREAK</h5>
+								<h5 className={cx('text-center', styles.whiteButtonText, styles.prompt)}>
+                  LONG&nbsp;BREAK
+                </h5>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div className={styles.links}>
-					<a className={styles.whatIsPomodoro} target='_blank' href='https://www.focusboosterapp.com/the-pomodoro-technique'>
-            <p className={styles.prompt}>What is Pomodoro?</p>
-          </a>
+				<div className={cx(styles.links, 'text-center')}>
 					<a className={styles.madeWithLove} target='_blank' href='http://jeremyukim.com'>
-            <p className={styles.prompt}>Made with React</p>
+            <p style={{fontSize: '0.9em'}}>
+              made with <FontAwesome name='heart'/> and react.js
+            </p>
           </a>
 				</div>
       </div>
@@ -161,4 +185,4 @@ class Sidebar extends React.Component {
   }
 }
 
-export default Sidebar
+export default Sidebar;

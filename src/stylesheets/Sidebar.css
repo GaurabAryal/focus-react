@@ -4,6 +4,11 @@
 
 a {
 	text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: #777;
 }
 
 .sidebar {
@@ -17,9 +22,9 @@ a {
 	font-weight: 400;
 }
 
-.promptBold {
+.promptLight {
 	font-family: "Prompt";
-	font-weight: 700;
+	font-weight: 300;
 }
 
 .header {
@@ -34,7 +39,7 @@ a {
 }
 
 .cardTitle {
-  margin-left: 15px;
+  margin-left: 20px;
   display: inline-block;
 }
 
@@ -43,6 +48,10 @@ a {
   /*margin-right: 1px;*/
 	background-color: #f3f3f3;
 	padding-top: 5px;
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
 }
 
 .pushRight {
@@ -73,15 +82,14 @@ a {
 	cursor: pointer;
 }
 
+.btnText:hover {
+  color: #4ab2dd;
+}
+
 .whiteButtonText {
   color: #fafafa;
   font-size: 0.85em;
   font-weight: 400;
-  letter-spacing: 0.4px;
-}
-
-.btnText:hover {
-  /*color: #ddd;*/
 }
 
 .btnWidth {
@@ -112,7 +120,7 @@ a {
 }
 
 .btnColor2:hover {
-	background-color: #e8516c;
+	background-color: #f9627b;
 }
 
 .btnColor3 {
@@ -125,15 +133,20 @@ a {
 }
 
 .btnColor3:hover {
-	background-color: #9e9ecb;
+	background-color: #afafdc;
 }
 
 .links {
-	position: fixed;
+  width: 100%;
+	position: absolute;
 	bottom: 10px;
-	margin-left: 5px;
-  font-family: "Prompt";
-  color: #eee !important;
+  left: 0;
+  font-family: 'Prompt';
+  font-weight: 300;
+}
+
+.questionMark {
+  margin-right: 15px;
 }
 
 .whatIsPomodoro, .madeWithLove {

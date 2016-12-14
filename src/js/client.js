@@ -9,12 +9,12 @@ class Main extends React.Component {
     return (
       <div className='container-fluid'>
         <div className='row'>
-          <div className={cx('col-sm-4 col-lg-3')}>
-            <div className={styles.backgroundLeft}>
+          <div className={cx('col-sm-5 col-lg-3')}>
+            <div>
               <Sidebar/>
             </div>
           </div>
-          <div className={cx('col-sm-8 col-lg-8')}>
+          <div className={cx('col-sm-7 col-lg-8')}>
             TODO HERE
           </div>
         </div>
