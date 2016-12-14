@@ -8,7 +8,7 @@ a {
 
 .sidebar {
   height: 100vh;
-  background-color: #414141;
+  background-color: #252525;
   box-shadow: 0 0 10px #555;
 }
 
@@ -59,24 +59,8 @@ a {
 .pomodoro {
   margin-left: 5px;
   margin-right: 5px;
-	background-color: #fefefe;
-	/*padding: 15px 13px 0 13px;
-	width: 100%;*/
-	/*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-	transition: all 0.3s cubic-bezier(.25,.8,.25,1);*/
-	z-index: 1;
+	background-color: #f3f3f3;
 	padding-top: 5px;
-}
-
-.selectedTask {
-	background-color: white;
-	/*padding: 15px 13px 0 13px;
-	width: 100%;*/
-	/*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-	transition: all 0.3s cubic-bezier(.25,.8,.25,1);*/
-	z-index: 1;
-	margin-top: 12px;
-	padding-top: 15px;
 }
 
 .pushRight {
@@ -104,6 +88,13 @@ a {
 	cursor: pointer;
 }
 
+.whiteButtonText {
+  color: #fafafa;
+  font-size: 0.85em;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
 .btnText:hover {
   /*color: #ddd;*/
 }
@@ -114,7 +105,7 @@ a {
 }
 
 .btnColor1 {
-	background-color: #6cd4ff;
+	background-color: #5bc3ee;
 	cursor: pointer;
   width: calc(100% / 3);
   display: inline-block;
@@ -127,7 +118,7 @@ a {
 }
 
 .btnColor2 {
-	background-color: #f9627d;
+	background-color: #e8516c;
 	cursor: pointer;
   width: calc(100% / 3);
   display: inline-block;
@@ -140,7 +131,7 @@ a {
 }
 
 .btnColor3 {
-	background-color: #afafdc;
+	background-color: #9e9ecb;
 	cursor: pointer;
   width: calc(100% / 3);
   display: inline-block;

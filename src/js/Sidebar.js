@@ -11,7 +11,10 @@ class Sidebar extends React.Component {
       minutes: 25,
       seconds: 0,
       secondsToDisplay: '00', // handles single digits
-      intervalId: null
+      intervalId: null,
+      intervalIsRunning: false,
+      timerIsPaused: false,
+      timerTitle: 'pomodoro'
     };
   }
 
@@ -26,11 +29,20 @@ class Sidebar extends React.Component {
       {
         minutes: minutes,
         seconds: 0,
-        secondsToDisplay: '00'
+        secondsToDisplay: '00',
+        intervalIsRunning: false,
+        timerIsPaused: false
       }
     );
     console.log('set timer with length of: ', minutes);
     this.tickSeconds();
+    if (minutes === 5) {
+      this.setState({timerTitle: 'short break'});
+    } else if (minutes === 10) {
+      this.setState({timerTitle: 'long break'});
+    } else {
+      this.setState({timerTitle: 'pomodoro'});
+    }
   }
 
   tickMinutes() {
@@ -39,7 +51,12 @@ class Sidebar extends React.Component {
 
   tickSeconds() {
     let self = this;
-    this.setState({intervalId: setInterval(this.countdownSeconds.bind(self), 1000)});
+    this.setState(
+      {
+        intervalId: setInterval(this.countdownSeconds.bind(self), 1000),
+        intervalIsRunning: true
+      }
+    );
   }
 
   countdownMinutes() {
@@ -51,25 +68,41 @@ class Sidebar extends React.Component {
   }
 
   countdownSeconds() {
-    let self = this;
-    let second = this.state.seconds;
-    if (second > 0) {
-      this.setState({seconds: second - 1});
-    } else if (second === 0){
-      this.setState(
-        {
-          seconds: 59,
-          secondsToDisplay: 59
-        }
-      );
-      this.countdownMinutes();
+    if (!this.state.timerIsPaused) {
+      let self = this;
+      let second = this.state.seconds;
+      if (second > 0) {
+        this.setState({seconds: second - 1});
+      } else if (second === 0){
+        this.setState(
+          {
+            seconds: 59,
+            secondsToDisplay: 59
+          }
+        );
+        this.countdownMinutes();
+      }
+      console.log(this.state.seconds);
+      // Format seconds (prepend 0 if single digit)
+      if (this.state.seconds.toString().length === 2) {
+        this.setState({secondsToDisplay: this.state.seconds});
+      } else if (this.state.seconds.toString().length === 1) {
+        this.setState({secondsToDisplay: '0' + this.state.seconds.toString()});
+      }
     }
-    console.log(this.state.seconds);
-    // Format seconds (prepend 0 if single digit)
-    if (this.state.seconds.toString().length === 2) {
-      this.setState({secondsToDisplay: this.state.seconds});
-    } else if (this.state.seconds.toString().length === 1) {
-      this.setState({secondsToDisplay: '0' + this.state.seconds.toString()});
+  }
+
+  handleStartClick() {
+    let self = this;
+    if (!this.state.intervalIsRunning) {
+      this.setState({intervalId: setInterval(this.countdownSeconds.bind(self), 1000)});
+    }
+    this.setState({timerIsPaused: false});
+  }
+
+  handlePauseClick() {
+    if (this.state.intervalIsRunning) {
+      this.setState({timerIsPaused: true});
     }
   }
 
@@ -82,16 +115,16 @@ class Sidebar extends React.Component {
             <p className={cx(styles.prompt, styles.pushRight)}>your personal productivity space</p>
           </div>
 					<div className={styles.pomodoro}>
-            <h4 className={cx(styles.prompt, styles.cardTitle, 'pull-left')}>pomodoro</h4>
+            <h4 className={cx(styles.prompt, styles.cardTitle, 'pull-left')}>{this.state.timerTitle}</h4>
 						<h1 className={cx(styles.prompt, styles.pushDown1, styles.time, 'text-center')}>
               <span id='timer'>{this.state.minutes}:{this.state.secondsToDisplay}</span>
             </h1>
 						<div className={cx(styles.pushDown2)}>
-							<div className={cx(styles.btnWidth)}>
+							<div className={cx(styles.btnWidth)} onClick={this.handleStartClick.bind(this)}>
 								<h5 className={cx('text-center', styles.btnText)}>Start</h5>
 							</div>
 							<div className={cx(styles.btnWidth)}>
-								<h5 className={cx('text-center', styles.btnText)}>Stop</h5>
+								<h5 className={cx('text-center', styles.btnText)} onClick={this.handlePauseClick.bind(this)}>Stop</h5>
 							</div>
 							<div className={cx(styles.btnWidth)}>
 								<h5 className={cx('text-center', styles.btnText)}>Reset</h5>
@@ -99,13 +132,13 @@ class Sidebar extends React.Component {
 						</div>
 						<div>
 							<div onClick={this.startTimer.bind(this, 25)} className={cx(styles.btnColor1)}>
-								<h5 className={cx('text-center')}>Pomodoro</h5>
+								<h5 className={cx('text-center', styles.whiteButtonText)}>POMODORO</h5>
 							</div>
 							<div onClick={this.startTimer.bind(this, 5)} className={cx(styles.btnColor2)}>
-								<h5 className={cx('text-center')}>Short&nbsp;break</h5>
+								<h5 className={cx('text-center', styles.whiteButtonText)}>SHORT&nbsp;BREAK</h5>
 							</div>
 							<div onClick={this.startTimer.bind(this, 10)} className={cx(styles.btnColor3)}>
-								<h5 className={cx('text-center')}>Long&nbsp;break</h5>
+								<h5 className={cx('text-center', styles.whiteButtonText)}>LONG&nbsp;BREAK</h5>
 							</div>
 						</div>
 					</div>
