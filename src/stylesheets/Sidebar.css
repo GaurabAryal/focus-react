@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: #414141;
+  box-shadow: 0 0 10px #555;
+}
+
+.links {
+	position: fixed;
+	bottom: 10px;
+	margin-left: 5px;
+  font-family: "Prompt";
+  color: #efefef !important;
+}
+
+.whatIsPomodoro, .madeWithLove {
+  color: #eee;
+}
+.whatIsPomodoro:hover, .madeWithLove:hover, .whatIsPomodoro:visited, .madeWithLove:visited, .whatIsPomodoro:link, .madeWithLove:link {
+	text-decoration: none;
+  color: #ccc;
+}
+
+.prompt {
+	font-family: "Prompt";
+	font-weight: 400;
+}
+
+.promptBold {
+	font-family: "Prompt";
+	font-weight: 700;
+}
+
+.header {
+	text-align: center;
+}
+
+.appTitle {
+  background-color: #414141;
+  color: #fafafa;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.cardTitle {
+  margin-left: 15px;
+  display: inline-block;
+  /*background-color: #6cd4ff;*/
+  /*padding: 7px 15px;*/
+}
+
+.pomodoro {
+  margin-left: 5px;
+  margin-right: 5px;
+	background-color: #fefefe;
+	/*padding: 15px 13px 0 13px;
+	width: 100%;*/
+	/*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);*/
+	z-index: 1;
+	padding-top: 5px;
+}
+
+.selectedTask {
+	background-color: white;
+	/*padding: 15px 13px 0 13px;
+	width: 100%;*/
+	/*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);*/
+	z-index: 1;
+	margin-top: 12px;
+	padding-top: 15px;
+}
+
+.pushRight {
+	margin-left: 20px;
+}
+
+.pushDown1 {
+	margin-top: 55px;
+	margin-bottom: 5px;
+}
+
+.pushDown2 {
+  height: 50px;
+	margin-top: 10px;
+	padding-bottom: 20px;
+}
+
+.time {
+	font-size: 4em;
+}
+
+.btnText {
+  font-weight: 700;
+	cursor: pointer;
+}
+
+.btnText:hover {
+  /*color: #ddd;*/
+}
+
+.btnWidth {
+  width: calc(100% / 3);
+  display: inline-block;
+}
+
+.btnColor1 {
+	background-color: #6cd4ff;
+	cursor: pointer;
+  width: calc(100% / 3);
+  display: inline-block;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.btnColor1:hover {
+	background-color: #5bc3ee;
+}
+
+.btnColor2 {
+	background-color: #f9627d;
+	cursor: pointer;
+  width: calc(100% / 3);
+  display: inline-block;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.btnColor2:hover {
+	background-color: #e8516c;
+}
+
+.btnColor3 {
+	background-color: #afafdc;
+	cursor: pointer;
+  width: calc(100% / 3);
+  display: inline-block;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.btnColor3:hover {
+	background-color: #9e9ecb;
+}
