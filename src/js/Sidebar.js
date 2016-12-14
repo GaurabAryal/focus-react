@@ -97,7 +97,12 @@ class Sidebar extends React.Component {
     if (!this.state.intervalIsRunning) {
       this.setState({intervalId: setInterval(this.countdownSeconds.bind(self), 1000)});
     }
-    this.setState({timerIsPaused: false});
+    this.setState(
+      {
+        timerIsPaused: false,
+        intervalIsRunning: true
+      }
+    );
   }
 
   handlePauseClick() {
@@ -121,13 +126,13 @@ class Sidebar extends React.Component {
             </h1>
 						<div className={cx(styles.pushDown2)}>
 							<div className={cx(styles.btnWidth)} onClick={this.handleStartClick.bind(this)}>
-								<h5 className={cx('text-center', styles.btnText)}>Start</h5>
+								<h5 className={cx('text-center', styles.btnText)}>START</h5>
 							</div>
 							<div className={cx(styles.btnWidth)}>
-								<h5 className={cx('text-center', styles.btnText)} onClick={this.handlePauseClick.bind(this)}>Stop</h5>
+								<h5 className={cx('text-center', styles.btnText)} onClick={this.handlePauseClick.bind(this)}>STOP</h5>
 							</div>
 							<div className={cx(styles.btnWidth)}>
-								<h5 className={cx('text-center', styles.btnText)}>Reset</h5>
+								<h5 className={cx('text-center', styles.btnText)}>RESET</h5>
 							</div>
 						</div>
 						<div>
@@ -148,7 +153,7 @@ class Sidebar extends React.Component {
             <p className={styles.prompt}>What is Pomodoro?</p>
           </a>
 					<a className={styles.madeWithLove} target='_blank' href='http://jeremyukim.com'>
-            <p className='prompt'>Made with React</p>
+            <p className={styles.prompt}>Made with React</p>
           </a>
 				</div>
       </div>
