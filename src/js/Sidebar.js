@@ -10,6 +10,7 @@ class Sidebar extends React.Component {
     this.state = {
       minutes: 25,
       seconds: 0,
+      secondsToDisplay: '00', // handles single digits
       intervalId: null
     };
   }
@@ -21,7 +22,13 @@ class Sidebar extends React.Component {
   startTimer(minutes) {
     let self = this;
     clearInterval(this.state.intervalId);
-    this.setState({minutes: minutes, seconds: 0});
+    this.setState(
+      {
+        minutes: minutes,
+        seconds: 0,
+        secondsToDisplay: '00'
+      }
+    );
     console.log('set timer with length of: ', minutes);
     this.tickSeconds();
   }
@@ -45,18 +52,24 @@ class Sidebar extends React.Component {
 
   countdownSeconds() {
     let self = this;
-    console.log(this.state.seconds);
-    // if (this.state.seconds === 0) {
-    //   this.setState({seconds: '00'})
-    // } else if (this.state.seconds < 10) {
-    //   this.setState({seconds: '0' + this.state.seconds.toString()})
-    // }
     let second = this.state.seconds;
     if (second > 0) {
       this.setState({seconds: second - 1});
     } else if (second === 0){
-      this.setState({seconds: 59});
+      this.setState(
+        {
+          seconds: 59,
+          secondsToDisplay: 59
+        }
+      );
       this.countdownMinutes();
+    }
+    console.log(this.state.seconds);
+    // Format seconds (prepend 0 if single digit)
+    if (this.state.seconds.toString().length === 2) {
+      this.setState({secondsToDisplay: this.state.seconds});
+    } else if (this.state.seconds.toString().length === 1) {
+      this.setState({secondsToDisplay: '0' + this.state.seconds.toString()});
     }
   }
 
@@ -71,7 +84,7 @@ class Sidebar extends React.Component {
 					<div className={styles.pomodoro}>
             <h4 className={cx(styles.prompt, styles.cardTitle, 'pull-left')}>pomodoro</h4>
 						<h1 className={cx(styles.prompt, styles.pushDown1, styles.time, 'text-center')}>
-              <span id='timer'>{this.state.minutes}:{this.state.seconds}</span>
+              <span id='timer'>{this.state.minutes}:{this.state.secondsToDisplay}</span>
             </h1>
 						<div className={cx(styles.pushDown2)}>
 							<div className={cx(styles.btnWidth)}>
