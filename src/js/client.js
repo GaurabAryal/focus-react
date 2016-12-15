@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import cx from 'classnames';
 import styles from '../stylesheets/Main.css';
 import Sidebar from './Sidebar.js';
+import Todo from './Todo.js';
 
 class Main extends React.Component {
   render() {
@@ -15,7 +16,7 @@ class Main extends React.Component {
             </div>
           </div>
           <div className={cx('col-sm-7 col-lg-8', styles.todo)}>
-            <p>TODO HERE</p>
+            <Todo/>
           </div>
         </div>
       </div>
