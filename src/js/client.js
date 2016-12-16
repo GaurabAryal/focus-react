@@ -8,14 +8,14 @@ import Todo from './Todo.js';
 class Main extends React.Component {
   render() {
     return (
-      <div className='container-fluid'>
+      <div className={cx('container-fluid', styles.fullPage)}>
         <div className='row'>
-          <div className={cx('col-sm-5 col-lg-3')}>
+          <div className={cx('col-sm-4 col-lg-3')}>
             <div>
               <Sidebar/>
             </div>
           </div>
-          <div className={cx('col-sm-7 col-lg-8', styles.todo)}>
+          <div className={cx('col-sm-8 col-lg-9', styles.todo)}>
             <Todo/>
           </div>
         </div>

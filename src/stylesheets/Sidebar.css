@@ -39,6 +39,7 @@ a:hover {
 .appTitle {
   background-color: #333;
   color: #fafafa;
+  /*color: #4ab2dd;*/
   padding-top: 5px;
   padding-bottom: 10px;
 }
@@ -46,6 +47,7 @@ a:hover {
 .cardTitle {
   margin-left: 20px;
   display: inline-block;
+  /*color: #4ab2dd;*/
 }
 
 .pomodoro {
