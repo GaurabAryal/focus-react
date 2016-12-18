@@ -25,7 +25,9 @@ class Todo extends React.Component {
 
   addNewTodo() {
     let newTodo = document.getElementById('newTodo').value;
-    console.log('newTodo', newTodo);
+    if (newTodo === '') {
+      return;
+    }
     let tempTodos = this.state.todos;
     tempTodos.push(newTodo);
     this.setState({todos: tempTodos});
