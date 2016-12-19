@@ -4,18 +4,28 @@ import cx from 'classnames';
 import styles from '../stylesheets/Sidebar.css';
 import FontAwesome from 'react-fontawesome';
 
+let currentTaskMinutes = 10;
 class Sidebar extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      // first timer for pomodoro
       minutes: 25,
       seconds: 0,
       secondsToDisplay: '00', // handles single digits
       intervalId: null,
       intervalIsRunning: false,
       timerIsPaused: false,
-      timerTitle: 'pomodoro'
+      timerTitle: 'pomodoro',
+      // second timer for current task
+      currentTask: null,
+      minutesCurrent: 10,
+      secondsCurrent: 0,
+      secondsToDisplayCurrent: '00',
+      intervalIdCurrent: null,
+      intervalIsRunningCurrent: false,
+      timerIsPausedCurrent: false
     };
   }
 
@@ -147,6 +157,101 @@ class Sidebar extends React.Component {
     }
   }
 
+  startTimerCurrent(minutes) {
+    let self = this;
+    clearInterval(this.state.intervalIdCurrent);
+    this.setState(
+      {
+        minutesCurrent: minutes,
+        secondsCurrent: 0,
+        secondsToDisplayCurrent: '00',
+        intervalIsRunningCurrent: false,
+        timerIsPausedCurrent: false
+      }
+    );
+    console.log('set current task timer with length of: ', minutes);
+    this.tickSecondsCurrent();
+  }
+
+  tickMinutesCurrent() {
+    this.countdownMinutesCurrent();
+  }
+
+  tickSecondsCurrent() {
+    let self = this;
+    this.setState(
+      {
+        intervalIdCurrent: setInterval(this.countdownSecondsCurrent.bind(self), 1000),
+        intervalIsRunningCurrent: true
+      }
+    );
+  }
+
+  countdownMinutesCurrent() {
+    console.log('MINUTE Current task:', this.state.minutesCurrent);
+    let minute = this.state.minutesCurrent;
+    if (minute > 0) {
+      this.setState({minutesCurrent: minute - 1});
+    }
+  }
+
+  countdownSecondsCurrent() {
+    if (!this.state.timerIsPausedCurrent) {
+      let self = this;
+      let second = this.state.secondsCurrent;
+      if (second > 0) {
+        this.setState({secondsCurrent: second - 1});
+      } else if (second === 0){
+        this.setState(
+          {
+            secondsCurrent: 59,
+            secondsToDisplayCurrent: 59
+          }
+        );
+        this.countdownMinutesCurrent();
+      }
+      console.log(this.state.secondsCurrent);
+      // Format seconds (prepend 0 if single digit)
+      if (this.state.secondsCurrent.toString().length === 2) {
+        this.setState({secondsToDisplayCurrent: this.state.secondsCurrent});
+      } else if (this.state.secondsCurrent.toString().length === 1) {
+        this.setState({secondsToDisplayCurrent: '0' + this.state.secondsCurrent.toString()});
+      }
+    }
+  }
+
+  handleStartClickCurrent() {
+    let self = this;
+    if (!this.state.intervalIsRunningCurrent) {
+      this.setState({intervalIdCurrent: setInterval(this.countdownSecondsCurrent.bind(self), 1000)});
+    }
+    this.setState(
+      {
+        timerIsPausedCurrent: false,
+        intervalIsRunningCurrent: true
+      }
+    );
+  }
+
+  handlePauseClickCurrent() {
+    if (this.state.intervalIsRunningCurrent) {
+      this.setState({timerIsPausedCurrent: true});
+    }
+  }
+
+  handleResetClickCurrent() {
+    clearInterval(this.state.intervalIdCurrent);
+    this.setState(
+      {
+        minutesCurrent: currentTaskMinutes,
+        secondsCurrent: 0,
+        secondsToDisplayCurrent: '00',
+        intervalIsRunningCurrent: false,
+        timerIsPausedCurrent: false
+      }
+    );
+  }
+
   render() {
     return (
       <div>
@@ -158,7 +263,7 @@ class Sidebar extends React.Component {
             </p>
           </div>
 					<div className={cx(styles.pomodoro, 'animated fadeIn')}>
-            <h4 className={cx(styles.prompt, styles.cardTitle, 'pull-left animated fadeIn')}>
+            <h4 className={cx(styles.prompt, styles.cardTitle1, 'pull-left animated fadeIn')}>
               {this.state.timerTitle}
             </h4>
             <h4 className={cx(styles.questionMark, 'pull-right')}>
@@ -202,6 +307,36 @@ class Sidebar extends React.Component {
 							<div onClick={this.startTimer.bind(this, 10)} className={cx(styles.btnColor3)}>
 								<h5 className={cx('text-center', styles.whiteButtonText, styles.prompt)}>
                   LONG&nbsp;BREAK
+                </h5>
+							</div>
+						</div>
+					</div>
+          <div className={cx(styles.currentTask, 'animated fadeIn')}>
+            <h4 className={cx(styles.prompt, styles.cardTitle2, 'pull-left animated fadeIn')}>
+              current task
+            </h4>
+            <p className={cx(styles.promptLight, styles.cardTitle2)}>click
+              "start task" in the todo list to change the selected task
+            </p>
+						<h1 className={cx(styles.prompt, styles.time, 'text-center')}>
+              <span id='timer'>
+                {this.state.minutesCurrent}:{this.state.secondsToDisplayCurrent}
+              </span>
+            </h1>
+						<div className={cx(styles.pushDown2)}>
+							<div className={cx(styles.btnWidth)} onClick={this.handleStartClickCurrent.bind(this)}>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
+                  START
+                </h5>
+							</div>
+							<div className={cx(styles.btnWidth)} onClick={this.handlePauseClickCurrent.bind(this)}>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
+                  STOP
+                </h5>
+							</div>
+							<div className={cx(styles.btnWidth)} onClick={this.handleResetClickCurrent.bind(this)}>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
+                  RESET
                 </h5>
 							</div>
 						</div>
