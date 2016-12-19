@@ -6,6 +6,13 @@ import FontAwesome from 'react-fontawesome';
 
 class TodoEntry extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
   render() {
     return (
       <div className='col-lg-11 col-xl-8'>
@@ -13,14 +20,22 @@ class TodoEntry extends React.Component {
           <div className={styles.contentDiv}>
             <div className={styles.todoText}>
               <p className={cx(styles.promptLight)}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                {this.props.content}
               </p>
             </div>
             <div className={styles.actionDiv}>
-              <p className={cx(styles.prompt, styles.actionText, styles.blue)}>MARK AS DONE</p>
-              <p className={cx(styles.prompt, styles.actionText, styles.purple)}>START TASK</p>
-              <p className={cx(styles.prompt, styles.actionText, styles.red)}>DELETE</p>
+              <p className={cx(styles.prompt, styles.actionText, styles.blue)}
+                >
+                  MARK AS DONE
+              </p>
+              <p className={cx(styles.prompt, styles.actionText, styles.purple)}
+                >
+                  START TASK
+              </p>
+              <p className={cx(styles.prompt, styles.actionText, styles.red)}
+                onClick={() => this.props.deleteTodo(this.props.content)}>
+                DELETE
+              </p>
             </div>
           </div>
         </div>
@@ -31,7 +46,8 @@ class TodoEntry extends React.Component {
 
 TodoEntry.propTypes = {
   content: React.PropTypes.string.isRequired,
-  sendContentToSidebar: React.PropTypes.func.isRequired
+  sendContentToSidebar: React.PropTypes.func.isRequired,
+  deleteTodo: React.PropTypes.func.isRequired
 };
 
 export default TodoEntry;
