@@ -29,7 +29,7 @@ class TodoEntry extends React.Component {
                   MARK AS DONE
               </p>
               <p className={cx(styles.prompt, styles.actionText, styles.purple)}
-                >
+                onClick={() => this.props.sendContentToSidebar(this.props.content)}>
                   START TASK
               </p>
               <p className={cx(styles.prompt, styles.actionText, styles.red)}

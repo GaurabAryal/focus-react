@@ -19,7 +19,6 @@ class Sidebar extends React.Component {
       timerIsPaused: false,
       timerTitle: 'pomodoro',
       // second timer for current task
-      currentTask: null,
       minutesCurrent: 10,
       secondsCurrent: 0,
       secondsToDisplayCurrent: '00',
@@ -252,6 +251,10 @@ class Sidebar extends React.Component {
     );
   }
 
+  setCurrentTask(task) {
+    this.setState({currentTask: task});
+  }
+
   render() {
     return (
       <div>
@@ -315,9 +318,16 @@ class Sidebar extends React.Component {
             <h4 className={cx(styles.prompt, styles.cardTitle2, 'pull-left animated fadeIn')}>
               current task
             </h4>
-            <p className={cx(styles.promptLight, styles.cardTitle2)}>click
-              "start task" in the todo list to change the selected task
-            </p>
+            {(!this.props.currentTask) &&
+              <p className={cx(styles.promptLight, styles.cardTitle2)}>
+                click "start task" in the todo list to change the selected task
+              </p>
+            }
+            {(this.props.currentTask) &&
+              <p className={cx(styles.promptLight, styles.cardTitle2)}>
+                {this.props.currentTask}
+              </p>
+            }
 						<h1 className={cx(styles.prompt, styles.time, 'text-center')}>
               <span id='timer'>
                 {this.state.minutesCurrent}:{this.state.secondsToDisplayCurrent}
