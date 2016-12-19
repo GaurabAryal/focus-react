@@ -63,4 +63,15 @@
   margin-right: 20px;
   color: #4ab2dd;
   margin-bottom: 0;
+  padding: 10px;
+  cursor: pointer;
+  -webkit-transition: color 0.2s ease-out;
+  -moz-transition: color 0.2s ease-out;
+  -ms-transition: color 0.2s ease-out;
+  -o-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
+}
+
+.actionText:hover {
+  color: #5bc3ee;
 }

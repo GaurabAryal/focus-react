@@ -34,7 +34,7 @@ class TodoEntry extends React.Component {
               </p>
               <p className={cx(styles.prompt, styles.actionText, styles.red)}
                 onClick={() => this.props.deleteTodo(this.props.content)}>
-                DELETE
+                  DELETE
               </p>
             </div>
           </div>
