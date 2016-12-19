@@ -52,7 +52,8 @@ class Todo extends React.Component {
 
   renderSingleTodo(content) {
     return <TodoEntry content={content}
-      sendContentToSidebar={this.props.startTask} deleteTodo={this.deleteTodo.bind(this)}/>;
+      sendContentToSidebar={this.props.sendContentToSidebar}
+      deleteTodo={this.deleteTodo.bind(this)}/>;
   }
 
   render() {
@@ -73,5 +74,9 @@ class Todo extends React.Component {
     );
   }
 }
+
+Todo.propTypes = {
+  sendContentToSidebar: React.PropTypes.func.isRequired
+};
 
 export default Todo;
