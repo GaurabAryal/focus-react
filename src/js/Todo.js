@@ -31,12 +31,28 @@ class Todo extends React.Component {
     let tempTodos = this.state.todos;
     tempTodos.push(newTodo);
     this.setState({todos: tempTodos});
-    console.log('todos: ', this.state.todos);
     document.getElementById('newTodo').value = '';
   }
 
+  deleteTodo(text) {
+    let tempTodos = this.state.todos;
+    let index = tempTodos.indexOf(text);
+    tempTodos.splice(index, 1);
+    this.setState({todos: tempTodos});
+  }
+
   renderTodos() {
-    // state array keeps track of strings for each todo, render TodoEntry for each one
+    let renderArray = [];
+    for (let i = 0; i < this.state.todos.length; i++) {
+      let content = this.state.todos[i];
+      renderArray.push(this.renderSingleTodo(content));
+    }
+    return renderArray;
+  }
+
+  renderSingleTodo(content) {
+    return <TodoEntry content={content}
+      sendContentToSidebar={this.props.startTask} deleteTodo={this.deleteTodo.bind(this)}/>;
   }
 
   render() {
@@ -50,13 +66,7 @@ class Todo extends React.Component {
         </div>
         <div className='row'>
           <div className={styles.containTodo}>
-            {this.renderTodos}
-            {/* temporary direct render for testing UI */}
-            <TodoEntry/>
-            <TodoEntry/>
-            <TodoEntry/>
-            <TodoEntry/>
-            <TodoEntry/>
+            {this.renderTodos()}
           </div>
         </div>
       </div>
