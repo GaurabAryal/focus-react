@@ -25,12 +25,12 @@ class Main extends React.Component {
     return (
       <div className={cx('container-fluid', styles.fullPage)}>
         <div className='row'>
-          <div className={cx('col-sm-4 col-lg-3')}>
+          <div className={cx('col-sm-5 col-md-4 col-lg-3')}>
             <div>
               <Sidebar currentTask={this.state.currentTask}/>
             </div>
           </div>
-          <div className={cx('col-sm-8 col-lg-9', styles.todo)}>
+          <div className={cx('col-sm-7 col-md-8 col-lg-9', styles.todo)}>
             <Todo sendContentToSidebar={this.sendContentToSidebar.bind(this)}/>
           </div>
         </div>

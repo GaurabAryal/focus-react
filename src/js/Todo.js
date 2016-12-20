@@ -60,12 +60,10 @@ class Todo extends React.Component {
     return (
       <div>
         <div className='row'>
-          <div className='col-lg-8 col-xl-6'>
+          <div className='col-lg-8'>
             <h2 className={cx(styles.promptLight, styles.title)}>Tasks for Today</h2>
             <input id='newTodo' type='text' placeholder='What needs to be done?' className={styles.textField}/>
           </div>
-        </div>
-        <div className='row'>
           <div className={styles.containTodo}>
             {this.renderTodos()}
           </div>

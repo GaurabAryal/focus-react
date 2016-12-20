@@ -15,7 +15,7 @@ class TodoEntry extends React.Component {
 
   render() {
     return (
-      <div className='col-lg-11 col-xl-8'>
+      <div className='col-lg-11'>
         <div className={styles.todo}>
           <div className={styles.contentDiv}>
             <div className={styles.todoText}>
@@ -24,15 +24,15 @@ class TodoEntry extends React.Component {
               </p>
             </div>
             <div className={styles.actionDiv}>
-              <p className={cx(styles.prompt, styles.actionText, styles.blue)}
+              <p className={cx(styles.prompt, styles.actionText, styles.noselect)}
                 >
                   MARK AS DONE
               </p>
-              <p className={cx(styles.prompt, styles.actionText, styles.purple)}
+              <p className={cx(styles.prompt, styles.actionText, styles.noselect)}
                 onClick={() => this.props.sendContentToSidebar(this.props.content)}>
                   START TASK
               </p>
-              <p className={cx(styles.prompt, styles.actionText, styles.red)}
+              <p className={cx(styles.prompt, styles.actionText, styles.noselect)}
                 onClick={() => this.props.deleteTodo(this.props.content)}>
                   DELETE
               </p>

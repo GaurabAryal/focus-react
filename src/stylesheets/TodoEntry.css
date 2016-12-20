@@ -12,6 +12,16 @@
 	font-weight: 300;
 }
 
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+     -khtml-user-select: none; /* Konqueror */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
 .blue {
   color: #4ab2dd;
 }
@@ -36,7 +46,8 @@
 
 .contentDiv {
   /*padding: 7px;*/
-  margin-left: 20px;
+  /*margin-left: 10px;
+  margin-right: 10px;*/
   /*border-left: 1px solid #4ab2dd;
   padding-left: 15px;*/
 }
@@ -44,7 +55,7 @@
 .todo {
   width: 100%;
   border-radius: 2px;
-  margin-top: 35px;
+  margin-top: 25px;
   /*background-color: white;*/
   /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
 }
@@ -61,7 +72,8 @@
   display: inline-block;
   font-size: 0.8em;
   margin-right: 20px;
-  color: #4ab2dd;
+  margin-left: -10px;
+  color: #e8516c;
   margin-bottom: 0;
   padding: 10px;
   cursor: pointer;
@@ -73,5 +85,5 @@
 }
 
 .actionText:hover {
-  color: #5bc3ee;
+  color: #ff738e;
 }
