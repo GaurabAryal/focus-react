@@ -18,8 +18,8 @@ a:hover {
 
 .sidebar {
   height: 100vh;
-  background-color: #333;
-  box-shadow: 0 0 10px #555;
+  background-color: #efefef;
+  /*box-shadow: 0 0 10px #555;*/
 }
 
 .prompt {
@@ -37,46 +37,65 @@ a:hover {
 }
 
 .appTitle {
-  background-color: #333;
-  color: #fafafa;
-  /*color: #4ab2dd;*/
+  background-color: #efefef;
+  color: #e8516c;
   padding-top: 5px;
-  padding-bottom: 10px;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .cardTitle1 {
-  margin-left: 20px;
+  width: 100%;
+  padding: 12px 20px;
+  margin-top: 0;
+  margin-bottom: 35px;
   display: inline-block;
-  /*color: #4ab2dd;*/
+  background-color: #e8516c;
+  color: #fafafa;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
 }
 
 .cardTitle2 {
-  padding-left: 20px;
   width: 100%;
-  /*color: #4ab2dd;*/
+  padding: 12px 20px;
+  margin-top: 0;
+  width: 100%;
+  background-color: #e8516c;
+  color: #fafafa;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
 }
 
 .pomodoro {
-  /*margin-left: 1px;*/
-  /*margin-right: 1px;*/
+  margin-top: 0;
+  padding-top: 0;
+  margin-left: 12px;
+  margin-right: 12px;
 	background-color: #fafafa;
-	padding-top: 5px;
   -webkit-animation-delay: 0.4s;
   -moz-animation-delay: 0.4s;
   -webkit-animation-duration: 1.5s;
   -moz-animation-duration: 1.5s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 2px;
 }
 
 .currentTask {
-  /*margin-left: 1px;*/
-  /*margin-right: 1px;*/
-  margin-top: 30px;
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-top: 25px;
 	background-color: #fafafa;
-	padding-top: 5px;
   -webkit-animation-delay: 0.4s;
   -moz-animation-delay: 0.4s;
   -webkit-animation-duration: 1.5s;
   -moz-animation-duration: 1.5s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 2px;
+}
+
+.currentTodo {
+  padding: 60px 20px 0 20px;
 }
 
 .pushRight {
@@ -139,6 +158,7 @@ a:hover {
   -ms-transition: background-color 0.2s ease-out;
   -o-transition: background-color 0.2s ease-out;
   transition: background-color 0.2s ease-out;
+  border-bottom-left-radius: 2px;
 }
 
 .btnColor1:hover {
@@ -175,6 +195,7 @@ a:hover {
   -ms-transition: background-color 0.2s ease-out;
   -o-transition: background-color 0.2s ease-out;
   transition: background-color 0.2s ease-out;
+  border-bottom-right-radius: 2px;
 }
 
 .btnColor3:hover {
@@ -195,10 +216,10 @@ a:hover {
 }
 
 .whatIsPomodoro, .madeWithLove {
-  color: #eee;
+  color: #e8516c;
 }
 
 .whatIsPomodoro:hover, .madeWithLove:hover, .whatIsPomodoro:visited, .madeWithLove:visited, .whatIsPomodoro:link, .madeWithLove:link {
 	text-decoration: none;
-  color: #eee;
+  color: #e8516c;
 }

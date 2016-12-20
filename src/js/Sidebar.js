@@ -259,22 +259,20 @@ class Sidebar extends React.Component {
     return (
       <div>
         <div className={cx('row', styles.sidebar, 'animated fadeInLeft')}>
-          <div className={styles.appTitle}>
+          {/* <div className={styles.appTitle}>
             <h2 className={cx(styles.prompt, styles.pushRight)}>focus</h2>
             <p className={cx(styles.promptLight, styles.pushRight)}>
               your personal productivity space
             </p>
-          </div>
+          </div> */}
+          {/* <div className={styles.appTitle}>
+            <h3 className={cx(styles.promptLight, styles.pushRight)}>Good morning, Jeremy</h3>
+          </div> */}
 					<div className={cx(styles.pomodoro, 'animated fadeIn')}>
-            <h4 className={cx(styles.prompt, styles.cardTitle1, 'pull-left animated fadeIn')}>
+            <h4 className={cx(styles.promptLight, styles.cardTitle1, 'pull-left animated fadeIn')}>
               {this.state.timerTitle}
             </h4>
-            <h4 className={cx(styles.questionMark, 'pull-right')}>
-              <a target='_blank' href='https://www.focusboosterapp.com/the-pomodoro-technique'>
-                <FontAwesome name='question-circle' size='lg'/>
-              </a>
-            </h4>
-						<h1 className={cx(styles.prompt, styles.pushDown1, styles.time, 'text-center')}>
+						<h1 className={cx(styles.prompt, styles.time, 'text-center')}>
               <span id='timer'>
                 {this.state.minutes}:{this.state.secondsToDisplay}
               </span>
@@ -315,16 +313,16 @@ class Sidebar extends React.Component {
 						</div>
 					</div>
           <div className={cx(styles.currentTask, 'animated fadeIn')}>
-            <h4 className={cx(styles.prompt, styles.cardTitle2, 'pull-left animated fadeIn')}>
+            <h4 className={cx(styles.promptLight, styles.cardTitle2, 'pull-left animated fadeIn')}>
               current task
             </h4>
             {(!this.props.currentTask) &&
-              <p className={cx(styles.promptLight, styles.cardTitle2)}>
+              <p className={cx(styles.promptLight, styles.currentTodo)}>
                 click "start task" in the todo list to change the selected task
               </p>
             }
             {(this.props.currentTask) &&
-              <p className={cx(styles.promptLight, styles.cardTitle2)}>
+              <p className={cx(styles.promptLight, styles.currentTodo)}>
                 {this.props.currentTask}
               </p>
             }
