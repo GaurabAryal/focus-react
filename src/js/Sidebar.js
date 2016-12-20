@@ -259,15 +259,6 @@ class Sidebar extends React.Component {
     return (
       <div>
         <div className={cx('row', styles.sidebar, 'animated fadeInLeft')}>
-          {/* <div className={styles.appTitle}>
-            <h2 className={cx(styles.prompt, styles.pushRight)}>focus</h2>
-            <p className={cx(styles.promptLight, styles.pushRight)}>
-              your personal productivity space
-            </p>
-          </div> */}
-          {/* <div className={styles.appTitle}>
-            <h3 className={cx(styles.promptLight, styles.pushRight)}>Good morning, Jeremy</h3>
-          </div> */}
 					<div className={cx(styles.pomodoro, 'animated fadeIn')}>
             <h4 className={cx(styles.promptLight, styles.cardTitle1, 'pull-left animated fadeIn')}>
               {this.state.timerTitle}

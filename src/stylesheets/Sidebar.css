@@ -37,10 +37,11 @@ a:hover {
 }
 
 .appTitle {
-  background-color: #efefef;
-  color: #e8516c;
-  padding-top: 5px;
-  padding-bottom: 0;
+  background-color: #e8516c;
+  color: #fafafa;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -84,7 +85,7 @@ a:hover {
 .currentTask {
   margin-left: 12px;
   margin-right: 12px;
-  margin-top: 25px;
+  margin-top: 20px;
 	background-color: #fafafa;
   -webkit-animation-delay: 0.4s;
   -moz-animation-delay: 0.4s;
@@ -99,7 +100,7 @@ a:hover {
 }
 
 .pushRight {
-	margin-left: 20px;
+	margin-left: 25px;
 }
 
 .pushDown1 {
@@ -132,7 +133,7 @@ a:hover {
 }
 
 .btnText:hover {
-  color: #4ab2dd;
+  color: #e8516c;
 }
 
 .whiteButtonText {
