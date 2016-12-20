@@ -2,9 +2,9 @@
   box-sizing: border-box;
 }
 
-a {
+a, a:visited {
 	text-decoration: none;
-  color: inherit;
+  color: #e8516c;
   -webkit-transition: color 0.2s ease-out;
   -moz-transition: color 0.2s ease-out;
   -ms-transition: color 0.2s ease-out;
@@ -13,7 +13,17 @@ a {
 }
 
 a:hover {
-  color: #555555;
+  color: #ff738e!important;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+     -khtml-user-select: none; /* Konqueror */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
 }
 
 .sidebar {
@@ -37,12 +47,9 @@ a:hover {
 }
 
 .appTitle {
-  background-color: #e8516c;
-  color: #fafafa;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  margin-top: 0;
-  margin-bottom: 0;
+  color: #e8516c;
+  padding-top: 10px;
+  padding-left: 25px;
 }
 
 .cardTitle1 {
@@ -96,6 +103,7 @@ a:hover {
 }
 
 .currentTodo {
+  color: #555;
   padding: 60px 20px 0 20px;
 }
 
@@ -115,6 +123,7 @@ a:hover {
 }
 
 .time {
+  color: #555;
 	font-size: 4em;
   font-family: 'Droid Sans Mono', monospace;
 }
@@ -125,6 +134,7 @@ a:hover {
   padding: 10px;
   letter-spacing: 0.4px;
 	cursor: pointer;
+  color: #555;
   -webkit-transition: color 0.2s ease-out;
   -moz-transition: color 0.2s ease-out;
   -ms-transition: color 0.2s ease-out;
@@ -216,11 +226,12 @@ a:hover {
   margin-right: 15px;
 }
 
-.whatIsPomodoro, .madeWithLove {
+.whatIsPomodoro, .madeWithLove, .whatIsPomodoro:link, .madeWithLove:link {
   color: #e8516c;
+  text-decoration: none;
 }
 
-.whatIsPomodoro:hover, .madeWithLove:hover, .whatIsPomodoro:visited, .madeWithLove:visited, .whatIsPomodoro:link, .madeWithLove:link {
+.whatIsPomodoro:hover, .madeWithLove:hover, .whatIsPomodoro:visited, .madeWithLove:visited, {
 	text-decoration: none;
-  color: #e8516c;
+  color: #ff738e;
 }

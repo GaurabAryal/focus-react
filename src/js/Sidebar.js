@@ -259,6 +259,9 @@ class Sidebar extends React.Component {
     return (
       <div>
         <div className={cx('row', styles.sidebar, 'animated fadeInLeft')}>
+          <h2 className={cx(styles.appTitle, styles.promptLight)}>
+            Focus
+          </h2>
 					<div className={cx(styles.pomodoro, 'animated fadeIn')}>
             <h4 className={cx(styles.promptLight, styles.cardTitle1, 'pull-left animated fadeIn')}>
               {this.state.timerTitle}
@@ -270,34 +273,34 @@ class Sidebar extends React.Component {
             </h1>
 						<div className={cx(styles.pushDown2)}>
 							<div className={cx(styles.btnWidth)} onClick={this.handleStartClick.bind(this)}>
-								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt, styles.noselect)}>
                   START
                 </h5>
 							</div>
 							<div className={cx(styles.btnWidth)} onClick={this.handlePauseClick.bind(this)}>
-								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt, styles.noselect)}>
                   STOP
                 </h5>
 							</div>
 							<div className={cx(styles.btnWidth)} onClick={this.handleResetClick.bind(this)}>
-								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt, styles.noselect)}>
                   RESET
                 </h5>
 							</div>
 						</div>
 						<div>
 							<div onClick={this.startTimer.bind(this, 25)} className={cx(styles.btnColor1)}>
-								<h5 className={cx('text-center', styles.whiteButtonText, styles.prompt)}>
+								<h5 className={cx('text-center', styles.whiteButtonText, styles.prompt, styles.noselect)}>
                   POMODORO
                 </h5>
 							</div>
 							<div onClick={this.startTimer.bind(this, 5)} className={cx(styles.btnColor2)}>
-								<h5 className={cx('text-center', styles.whiteButtonText, styles.prompt)}>
+								<h5 className={cx('text-center', styles.whiteButtonText, styles.prompt, styles.noselect)}>
                   SHORT&nbsp;BREAK
                 </h5>
 							</div>
 							<div onClick={this.startTimer.bind(this, 10)} className={cx(styles.btnColor3)}>
-								<h5 className={cx('text-center', styles.whiteButtonText, styles.prompt)}>
+								<h5 className={cx('text-center', styles.whiteButtonText, styles.prompt, styles.noselect)}>
                   LONG&nbsp;BREAK
                 </h5>
 							</div>
@@ -324,17 +327,17 @@ class Sidebar extends React.Component {
             </h1>
 						<div className={cx(styles.pushDown2)}>
 							<div className={cx(styles.btnWidth)} onClick={this.handleStartClickCurrent.bind(this)}>
-								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt, styles.noselect)}>
                   START
                 </h5>
 							</div>
 							<div className={cx(styles.btnWidth)} onClick={this.handlePauseClickCurrent.bind(this)}>
-								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt, styles.noselect)}>
                   STOP
                 </h5>
 							</div>
 							<div className={cx(styles.btnWidth)} onClick={this.handleResetClickCurrent.bind(this)}>
-								<h5 className={cx('text-center', styles.btnText, styles.prompt)}>
+								<h5 className={cx('text-center', styles.btnText, styles.prompt, styles.noselect)}>
                   RESET
                 </h5>
 							</div>
@@ -343,7 +346,7 @@ class Sidebar extends React.Component {
 				</div>
 				<div className={cx(styles.links, 'text-center')}>
 					<a className={styles.madeWithLove} target='_blank' href='http://jeremyukim.com'>
-            <p style={{fontSize: '0.9em'}}>
+            <p style={{fontSize: '0.85em'}} className={cx(styles.prompt, styles.noselect)}>
               made with <FontAwesome name='heart'/> and react.js
             </p>
           </a>
