@@ -3,19 +3,35 @@ import ReactDOM from 'react-dom';
 import cx from 'classnames';
 import styles from '../stylesheets/Main.css';
 import Sidebar from './Sidebar.js';
+import Todo from './Todo.js';
 
 class Main extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentTask: null
+    };
+  }
+
+  sendContentToSidebar(task) {
+    console.log('setting current task to: ', task);
+    this.setState({currentTask: task});
+    console.log('current task state is: ', this.state.currentTask)
+  }
+
   render() {
+    console.log('current task state is: ', this.state.currentTask)
     return (
-      <div className='container-fluid'>
+      <div className={cx('container-fluid', styles.fullPage)}>
         <div className='row'>
-          <div className={cx('col-sm-5 col-lg-3')}>
+          <div className={cx('col-sm-5 col-md-4 col-lg-3')}>
             <div>
-              <Sidebar/>
+              <Sidebar currentTask={this.state.currentTask}/>
             </div>
           </div>
-          <div className={cx('col-sm-7 col-lg-8', styles.todo)}>
-            <p>TODO HERE</p>
+          <div className={cx('col-sm-7 col-md-8 col-lg-9', styles.todo)}>
+            <Todo sendContentToSidebar={this.sendContentToSidebar.bind(this)}/>
           </div>
         </div>
       </div>

@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.fullPage {
+  background-color: #fafafa;
+}
+
 .todo {
   height: 100vh;
   overflow-y: scroll;
