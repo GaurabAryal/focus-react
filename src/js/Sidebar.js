@@ -81,9 +81,20 @@ class Sidebar extends React.Component {
     if (!this.state.timerIsPaused) {
       let self = this;
       let second = this.state.seconds;
+      let minute = this.state.minutes;
       if (second > 0) {
         this.setState({seconds: second - 1});
-      } else if (second === 0){
+      } else if ((minute === 0) && (this.state.seconds === 0)) {
+        this.setState({
+          timerIsPaused: true,
+          minutes: 0,
+          seconds: 0,
+          secondsToDisplay: '00',
+          intervalIsRunning: false,
+        });
+        let timerEndSound = new Audio('../sounds/timerEnd.wav');
+        timerEndSound.play();
+      } else if (second === 0) {
         this.setState(
           {
             seconds: 59,

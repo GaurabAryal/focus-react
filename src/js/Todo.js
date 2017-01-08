@@ -15,10 +15,12 @@ class Todo extends React.Component {
   }
 
   componentDidMount() {
+    let storedTodos = JSON.parse(localStorage.getItem('todoList'));
+    this.setState({todos: storedTodos});
     let newTodo = document.getElementById('newTodo');
     newTodo.addEventListener('keydown', (e) => {
       if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
-          this.addNewTodo();
+        this.addNewTodo();
       }
     });
   }
@@ -30,6 +32,7 @@ class Todo extends React.Component {
     }
     let tempTodos = this.state.todos;
     tempTodos.push(newTodo);
+    localStorage.setItem('todoList', JSON.stringify(tempTodos));
     this.setState({todos: tempTodos});
     document.getElementById('newTodo').value = '';
   }
@@ -39,12 +42,15 @@ class Todo extends React.Component {
     let index = tempTodos.indexOf(text);
     tempTodos.splice(index, 1);
     this.setState({todos: tempTodos});
+    localStorage.setItem('todoList', JSON.stringify(tempTodos));
   }
 
   renderTodos() {
     let renderArray = [];
-    for (let i = 0; i < this.state.todos.length; i++) {
-      let content = this.state.todos[i];
+    let numTodos = 0;
+    let storedTodos = JSON.parse(localStorage.getItem('todoList')) || [];
+    for (let i = 0; i < storedTodos.length; i++) {
+      let content = storedTodos[i];
       renderArray.push(this.renderSingleTodo(content));
     }
     return renderArray;
