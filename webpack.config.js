@@ -24,20 +24,14 @@ module.exports = {
           {
             test: /\.css$/,
             loader: 'style-loader!css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]'
-          },
-          {
-            loader: 'file-loader'
-          },
-          {
-            loader: 'url-loader'
           }
       ]
   },
   plugins: [
-  new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production')
-    }
-  })
-],
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
+  ]
 };

@@ -16,7 +16,7 @@ class Todo extends React.Component {
 
   componentDidMount() {
     let storedTodos = JSON.parse(localStorage.getItem('todoList'));
-    this.setState({todos: storedTodos});
+    storedTodos ? this.setState({todos: storedTodos}) : this.setState({todos: []});
     let newTodo = document.getElementById('newTodo');
     newTodo.addEventListener('keydown', (e) => {
       if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"

@@ -4,7 +4,7 @@ import cx from 'classnames';
 import styles from '../stylesheets/Sidebar.css';
 import FontAwesome from 'react-fontawesome';
 
-let currentTaskMinutes = 10;
+let currentTaskMinutes = 25;
 class Sidebar extends React.Component {
 
   constructor(props) {
